@@ -3,6 +3,8 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -12,7 +14,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/users")
-    public ResponseEntity<?> saveUser(@Valid @RequestBody UserRequest.SaveUserDTO requestDTO, Error errors){
+    public ResponseEntity<?> saveUser(@Validated @RequestBody UserRequest.SaveUserDTO requestDTO, Errors errors){
 
         UserResponse.SaveUserDTO responseDTO=userService.saveUser(requestDTO);
 
@@ -28,7 +30,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable Long id, @Valid  @RequestBody UserRequest.UpdateDTO requestDTO, Error errors){
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @Valid  @RequestBody UserRequest.UpdateDTO requestDTO, Errors errors){
 
         UserResponse.UpdateUserDTO responseDTO = userService.updateUser(id, requestDTO);
 

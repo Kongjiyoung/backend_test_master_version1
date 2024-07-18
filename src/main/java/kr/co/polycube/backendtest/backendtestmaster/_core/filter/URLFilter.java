@@ -24,6 +24,7 @@ public class URLFilter implements Filter {
 
         if (invalidCharacters(queryString) || invalidCharacters(requestURI)) {
             response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+            response.setStatus(400);
             response.getWriter().println(new ErrorResponse("잘못된 특수문자 요청"));
         } else {
             filterChain.doFilter(request, response);
