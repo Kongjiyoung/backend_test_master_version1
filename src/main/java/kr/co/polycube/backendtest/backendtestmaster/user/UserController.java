@@ -33,4 +33,11 @@ public class UserController {
 
         return ResponseEntity.ok(responseDTO);
     }
+
+    @GetMapping("/users/{id}?name=test!!")
+    public ResponseEntity<?> filterTest(@PathVariable Long id){
+
+        return ResponseEntity.ok(null);
+    }
+
 }
