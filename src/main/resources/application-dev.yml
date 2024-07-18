@@ -9,8 +9,8 @@ spring:
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:test;MODE=MySQL
-    username:
-    password:
+    username: pc
+    password: 2024
   h2:
     console:
       enabled: true
