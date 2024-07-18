@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice
-public class ExceptionHandler {
+public class GlobalExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(Exception400.class)
     public ResponseEntity<ErrorResponse> ex400(Exception400 e){
         ErrorResponse responseDTO = new ErrorResponse(e.getMessage());
