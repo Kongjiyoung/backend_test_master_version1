@@ -11,7 +11,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/users")
-    public ResponseEntity<?> saveUser(@RequestBody UserRequest.UserSaveDTO requestDTO){
+    public ResponseEntity<?> saveUser(@RequestBody UserRequest.SaveUserDTO requestDTO){
 
         UserResponse.SaveUserDTO responseDTO=userService.saveUser(requestDTO);
 
@@ -22,6 +22,14 @@ public class UserController {
     public ResponseEntity<?> findUser(@PathVariable Long id){
 
         UserResponse.findUserDTO responseDTO = userService.findUser(id);
+
+        return ResponseEntity.ok(responseDTO);
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserRequest.UpdateDTO requestDTO){
+
+        UserResponse.UpdateUserDTO responseDTO = userService.updateUser(id, requestDTO);
 
         return ResponseEntity.ok(responseDTO);
     }

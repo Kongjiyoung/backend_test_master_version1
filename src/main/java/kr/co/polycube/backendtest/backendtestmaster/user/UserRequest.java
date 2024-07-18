@@ -5,7 +5,7 @@ import lombok.Data;
 public class UserRequest {
 
     @Data
-    public static class UserSaveDTO{
+    public static class SaveUserDTO{
         private String name;
 
         public User toEntity(){
@@ -13,5 +13,10 @@ public class UserRequest {
                     .name(name)
                     .build();
         }
+    }
+
+    @Data
+    public static class UpdateDTO {
+        private String name;
     }
 }
