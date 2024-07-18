@@ -6,11 +6,22 @@ import lombok.Data;
 public class UserResponse {
 
     @Data
-    public static class UserSaveDTO{
+    public static class SaveUserDTO{
         private Long Id;
 
-        public UserSaveDTO(User user) {
+        public SaveUserDTO(User user) {
             Id = user.getId();
+        }
+    }
+
+    @Data
+    public static class findUserDTO{
+        private Long Id;
+        private String name;
+
+        public findUserDTO(User user) {
+            Id = user.getId();
+            name = user.getName();
         }
     }
 }

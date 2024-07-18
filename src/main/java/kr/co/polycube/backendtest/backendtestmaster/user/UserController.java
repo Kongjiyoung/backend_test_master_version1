@@ -11,9 +11,17 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/users")
-    public ResponseEntity<?> userSave(@RequestBody UserRequest.UserSaveDTO requestDTO){
+    public ResponseEntity<?> saveUser(@RequestBody UserRequest.UserSaveDTO requestDTO){
 
-        UserResponse.UserSaveDTO responseDTO=userService.saveUser(requestDTO);
+        UserResponse.SaveUserDTO responseDTO=userService.saveUser(requestDTO);
+
+        return ResponseEntity.ok(responseDTO);
+    }
+
+    @GetMapping("/users/{id}")
+    public ResponseEntity<?> findUser(@PathVariable Long id){
+
+        UserResponse.findUserDTO responseDTO = userService.findUser(id);
 
         return ResponseEntity.ok(responseDTO);
     }
