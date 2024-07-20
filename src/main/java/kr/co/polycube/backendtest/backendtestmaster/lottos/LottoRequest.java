@@ -2,7 +2,7 @@ package kr.co.polycube.backendtest.backendtestmaster.lottos;
 
 import lombok.Data;
 
-public class LottosRequest {
+public class LottoRequest {
 
     @Data
     public static class SaveDTO {
@@ -13,8 +13,8 @@ public class LottosRequest {
         private Integer number5;
         private Integer number6;
 
-        public Lottos toEntity(){
-            return Lottos.builder()
+        public Lotto toEntity(){
+            return Lotto.builder()
                     .number1(number1)
                     .number2(number2)
                     .number3(number3)

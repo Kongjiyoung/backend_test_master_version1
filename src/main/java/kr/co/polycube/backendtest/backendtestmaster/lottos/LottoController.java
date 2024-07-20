@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-public class LottosController {
+public class LottoController {
 
-    private final LottosService lottosService;
+    private final LottoService lottoService;
 
-    @PostMapping("/lottos")
-    public ResponseEntity<?> save(@RequestBody LottosRequest.SaveDTO reqestDTO) {
+    @PostMapping("/lotto")
+    public ResponseEntity<?> saveLotto(@RequestBody LottoRequest.SaveDTO requestDTO) {
 
-        LottosResponse.SaveDTO responseDTO= lottosService.save(reqestDTO);
+        LottoResponse.SaveDTO responseDTO= lottoService.save(requestDTO);
 
         return ResponseEntity.ok(responseDTO);
     }

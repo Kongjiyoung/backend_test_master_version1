@@ -1,17 +1,19 @@
 package kr.co.polycube.backendtest.backendtestmaster.lottos;
 
+import kr.co.polycube.backendtest.backendtestmaster._core.errors.exception.Exception400;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class LottosService {
-    private final LottosRepository lottosRepository;
+public class LottoService {
+    private final LottoRepository lottoRepository;
 
-    public LottosResponse.SaveDTO save(LottosRequest.SaveDTO requestDTO) {
+    public LottoResponse.SaveDTO save(LottoRequest.SaveDTO requestDTO) {
         int[] numbers = {
                 requestDTO.getNumber1(),
                 requestDTO.getNumber2(),
@@ -24,17 +26,17 @@ public class LottosService {
         for (int i = 0; i < numbers.length; i++) {
             for (int j = i + 1; j < numbers.length; j++) {
                 if (numbers[i] == numbers[j]) {
-                    throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
+                    throw new Exception400("로또 번호는 중복될 수 없습니다");
                 }
             }
         }
 
-        Lottos lottos = lottosRepository.save(requestDTO.toEntity());
+        Lotto lotto = lottoRepository.save(requestDTO.toEntity());
 
-        return new LottosResponse.SaveDTO(lottos);
+        return new LottoResponse.SaveDTO(lotto);
     }
 
-    public List<Integer> generateLottoNumbers() {
+    public List<Integer> winningLottoNumbers() {
         return new Random().ints(1, 46)
                 .distinct()
                 .limit(6)
@@ -42,14 +44,14 @@ public class LottosService {
                 .collect(Collectors.toList());
     }
 
-    public int calculateRank(Lottos lottos, List<Integer> winningNumbers) {
+    public int winningRank(Lotto lotto, List<Integer> winningNumbers) {
         List<Integer> numbers = List.of(
-                lottos.getNumber1(),
-                lottos.getNumber2(),
-                lottos.getNumber3(),
-                lottos.getNumber4(),
-                lottos.getNumber5(),
-                lottos.getNumber6()
+                lotto.getNumber1(),
+                lotto.getNumber2(),
+                lotto.getNumber3(),
+                lotto.getNumber4(),
+                lotto.getNumber5(),
+                lotto.getNumber6()
         );
 
         int matches = (int) numbers.stream().filter(winningNumbers::contains).count();

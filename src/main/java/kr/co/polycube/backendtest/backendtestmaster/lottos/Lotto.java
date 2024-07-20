@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-@Table(name = "lottos_tb")
+@Table(name = "lotto_tb")
 @Entity
-public class Lottos {
+public class Lotto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,7 +22,7 @@ public class Lottos {
     private Integer number6;
 
     @Builder
-    public Lottos(Long id, Integer number1, Integer number2, Integer number3, Integer number4, Integer number5, Integer number6) {
+    public Lotto(Long id, Integer number1, Integer number2, Integer number3, Integer number4, Integer number5, Integer number6) {
         this.id = id;
         this.number1 = number1;
         this.number2 = number2;
@@ -31,4 +31,6 @@ public class Lottos {
         this.number5 = number5;
         this.number6 = number6;
     }
+
+
 }

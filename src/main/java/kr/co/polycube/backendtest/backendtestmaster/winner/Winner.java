@@ -1,7 +1,7 @@
 package kr.co.polycube.backendtest.backendtestmaster.winner;
 
 import jakarta.persistence.*;
-import kr.co.polycube.backendtest.backendtestmaster.lottos.Lottos;
+import kr.co.polycube.backendtest.backendtestmaster.lottos.Lotto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,14 +17,14 @@ public class Winner {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Lottos lottos;
+    private Lotto lotto;
 
     private Integer rank;
 
     @Builder
-    public Winner(Long id, Lottos lottos, Integer rank) {
+    public Winner(Long id, Lotto lotto, Integer rank) {
         this.id = id;
-        this.lottos = lottos;
+        this.lotto = lotto;
         this.rank = rank;
     }
 }
